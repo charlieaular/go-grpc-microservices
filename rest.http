@@ -1,0 +1,52 @@
+@apiUrl = http://localhost:3000
+@authToken = {{login.response.body.token}}
+
+###
+# @name register
+POST {{apiUrl}}/auth/register
+Content-Type: application/json
+
+{
+  "email": "charlie@gmail.com",
+  "password": "123456"
+}
+
+###
+# @name login
+POST {{apiUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "email": "charlie@gmail.com",
+  "password": "123456"
+}
+
+###
+# @name product
+POST {{apiUrl}}/product
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+{
+  "name": "Product A",
+  "stock": 5,
+  "price": 15
+}
+
+
+###
+# @name getProduct
+GET {{apiUrl}}/product/2
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+###
+# @name order
+POST {{apiUrl}}/order
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+{
+  "productId": 2,
+  "quantity": 3 
+}
